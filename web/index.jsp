@@ -11,6 +11,9 @@
     <title>$Title$</title>
   </head>
   <body>
-  $END$
+  <form action="/index" method="post">
+    <input type="text" name="user" />
+    <input type="submit">
+  </form>
   </body>
 </html>
