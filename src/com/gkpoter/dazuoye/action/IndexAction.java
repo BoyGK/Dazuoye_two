@@ -28,6 +28,7 @@ public class IndexAction extends ActionSupport {
 
     public String getJson() throws Exception {
         UserServes serves=new UserServes();
+
         if(serves.login(user)){
             TestDAO dao=new TestDAO();
             List<STVModel> models = dao.query("select * from username where username = " + user);
