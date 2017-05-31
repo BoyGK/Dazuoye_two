@@ -6,9 +6,7 @@ package com.gkpoter.dazuoye.serves;
 public class UserServes {
 
     public boolean login(String name){
-        if(name.equals("123")){
-            return true;
-        }
+
         return false;
     }
 }

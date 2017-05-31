@@ -5,14 +5,23 @@ package com.gkpoter.dazuoye.bean;
  */
 public class STuserBean {
 
+    private Integer userid;
     private String username;
     private String password;
     private String truename;
-    private Integer sex;//int
+    private Integer sex;
     private String school;
     private String dept;
     private String collage;
     private Integer kind;
+
+    public Integer getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Integer userid) {
+        this.userid = userid;
+    }
 
     public String getUsername() {
         return username;

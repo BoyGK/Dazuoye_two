@@ -1,4 +1,4 @@
-package com.gkpoter.dazuoye.test;
+package com.gkpoter.dazuoye.ztest;
 
 import com.gkpoter.dazuoye.util.JdbcUtil;
 
@@ -11,7 +11,7 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            JdbcUtil jdbcUtil=JdbcUtil.getInstance();
+            JdbcUtil jdbcUtil = JdbcUtil.getInstance();
             Connection conn = jdbcUtil.getConnection();
             PreparedStatement ps = conn.prepareStatement("select * from test");
             ResultSet rs = ps.executeQuery();
