@@ -62,8 +62,26 @@ public class UserDAO {
      * @return
      */
     public List<STuserBean> find(){
-        List<STuserBean> stUsers = new ArrayList<>();
         return query("select * from stuser");
+    }
+
+    /**
+     * 单条数据查询
+     * @param user
+     * @return
+     */
+    public STuserBean find(STuserBean user){
+        if(user!=null) {
+            if (user.getUsername() != null) {
+                if (!"".equals(user.getUsername())) {
+                    List<STuserBean> sTuserBean = query("SELECT * FROM stuser WHERE username = '" + user.getUsername() + "'");
+                    if(sTuserBean!=null&&sTuserBean.size()!=0){
+                        return sTuserBean.get(0);
+                    }
+                }
+            }
+        }
+        return null;
     }
 
     /**
