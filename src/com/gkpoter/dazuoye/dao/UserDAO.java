@@ -35,7 +35,6 @@ public class UserDAO {
                 rs = ps.executeQuery();
                 while (rs!=null&&rs.next()) {
                     STuserBean stuser = new STuserBean();
-                    stuser = new STuserBean();
                     stuser.setUserid(rs.getInt(1));
                     stuser.setUsername(rs.getString(2));
                     stuser.setPassword(rs.getString(3));
@@ -49,7 +48,7 @@ public class UserDAO {
                 }
             }else{
                 ps.executeUpdate();
-            }
+             }
             jdbcUtil.closeConnection(rs,ps,connection);
         }catch (Exception e){
             e.printStackTrace();

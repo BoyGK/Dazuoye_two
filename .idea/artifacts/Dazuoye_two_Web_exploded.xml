@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Dazuoye_two:Web exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/Dazuoye_two_Web_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="Dazuoye_two/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Dazuoye_two" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="struts2" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../MySQL/mysql-connector-java-5.1.42/mysql-connector-java-5.1.42-bin.jar" />
+          <element id="file-copy" path="$APPLICATION_HOME_DIR$/gson.jar" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
