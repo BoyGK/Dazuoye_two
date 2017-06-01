@@ -1,6 +1,7 @@
 package com.gkpoter.dazuoye.ztest;
 
 import com.gkpoter.dazuoye.util.JdbcUtil;
+import com.gkpoter.dazuoye.util.JwxtUtil;
 
 import java.sql.*;
 
@@ -10,19 +11,9 @@ import java.sql.*;
 public class Main {
 
     public static void main(String[] args) {
-        try {
-            JdbcUtil jdbcUtil = JdbcUtil.getInstance();
-            Connection conn = jdbcUtil.getConnection();
-            PreparedStatement ps = conn.prepareStatement("select * from test");
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                System.out.println("id : " + rs.getInt(1) + " name : "
-                        + rs.getString("username") + " password : " + rs.getString(3));
-            }
-            jdbcUtil.closeConnection(rs,ps,conn);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        JwxtUtil jwxtUtil=JwxtUtil.getInstance();
+        String[] s = jwxtUtil.getSyllabus("0151122384","1215356195");
+        System.out.print(s);
     }
 
 }
