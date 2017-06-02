@@ -13,7 +13,7 @@ import java.io.PrintWriter;
 /**
  * Created by 12153 on 2017/5/26.
  */
-public class IndexAction extends ActionSupport {
+public class LoginAction extends ActionSupport {
 
     /**
      * HttpServletResponse response = ServletActionContext.getResponse();

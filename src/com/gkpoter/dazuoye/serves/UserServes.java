@@ -19,4 +19,9 @@ public class UserServes {
         }
         return false;
     }
+
+    public boolean register(String username,String password,String stnumber,String stpassword){
+
+        return false;
+    }
 }

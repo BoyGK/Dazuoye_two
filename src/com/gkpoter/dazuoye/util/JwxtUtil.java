@@ -1,9 +1,9 @@
 package com.gkpoter.dazuoye.util;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
+import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.List;
@@ -157,7 +157,7 @@ public class JwxtUtil {
             // flush输出流的缓冲
             out.flush();
             // 定义BufferedReader输入流来读取URL的响应
-            in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            in = new BufferedReader(new InputStreamReader(conn.getInputStream(),"GBK"));
             String line;
             while ((line = in.readLine()) != null) {
                 result += line;
@@ -225,8 +225,126 @@ public class JwxtUtil {
 
     }
 
-    public String[] getSyllabus(String username,String password){
-        String[] string=Syllabus(username, password).split(",");
+    /**
+     * 获取已选课程信息
+     * @param usernum
+     * @param password
+     * @return
+     */
+    public String[] getSyllabus(String usernum,String password){
+        String[] string=Syllabus(usernum, password).split(",");
         return string;
     }
+
+    /**
+     * 获取学生信息
+     * @param usernum
+     * @param password
+     * @return
+     */
+    public StudentInfo getStudentInfo(String usernum,String password){
+        sendGet("http://jwxt.imu.edu.cn/loginAction.do","zjh="+usernum+"&mm="+password);
+        String string = sendPost("http://jwxt.imu.edu.cn/xjInfoAction.do","oper=xjxx");
+        Document doc = Jsoup.parse(string);
+        System.out.print(doc.body());
+
+        StudentInfo studentInfo=new StudentInfo();
+        studentInfo.setNumber(usernum);
+        studentInfo.setPassword(password);
+        return studentInfo;
+    }
+
+    class StudentInfo{
+        private String number;
+        private String password;
+        private String truename;
+        private String sex;
+        private String cardnum;
+        /*
+        民族
+         */
+        private String nation;
+        /*
+        政治面貌
+         */
+        private String politicalstatus;
+        /*
+        院系
+         */
+        private String faculty;
+        private String clazz;
+
+        public String getNumber() {
+            return number;
+        }
+
+        public void setNumber(String number) {
+            this.number = number;
+        }
+
+        public String getPassword() {
+            return password;
+        }
+
+        public void setPassword(String password) {
+            this.password = password;
+        }
+
+        public String getTruename() {
+            return truename;
+        }
+
+        public void setTruename(String truename) {
+            this.truename = truename;
+        }
+
+        public String getSex() {
+            return sex;
+        }
+
+        public void setSex(String sex) {
+            this.sex = sex;
+        }
+
+        public String getCardnum() {
+            return cardnum;
+        }
+
+        public void setCardnum(String cardnum) {
+            this.cardnum = cardnum;
+        }
+
+        public String getNation() {
+            return nation;
+        }
+
+        public void setNation(String nation) {
+            this.nation = nation;
+        }
+
+        public String getPoliticalstatus() {
+            return politicalstatus;
+        }
+
+        public void setPoliticalstatus(String politicalstatus) {
+            this.politicalstatus = politicalstatus;
+        }
+
+        public String getFaculty() {
+            return faculty;
+        }
+
+        public void setFaculty(String faculty) {
+            this.faculty = faculty;
+        }
+
+        public String getClazz() {
+            return clazz;
+        }
+
+        public void setClazz(String clazz) {
+            this.clazz = clazz;
+        }
+    }
+
 }

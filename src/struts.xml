@@ -8,7 +8,7 @@
     <package name="default" namespace="/" extends="struts-default">
 
         <!-- 定义一个action -->
-        <action name="index" class="com.gkpoter.dazuoye.action.IndexAction" method="Login">
+        <action name="index" class="com.gkpoter.dazuoye.action.LoginAction" method="Login">
         </action>
     </package>
 </struts>
