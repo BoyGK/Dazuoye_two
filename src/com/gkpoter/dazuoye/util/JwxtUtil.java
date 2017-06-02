@@ -145,8 +145,10 @@ public class JwxtUtil {
             conn.setRequestProperty("connection", "Keep-Alive");
             conn.setRequestProperty("user-agent","Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1;SV1)");
             //对cookie进行处理：
-            cookie_value=cookie_value.replaceAll("; path=/", "");
-            conn.setRequestProperty("cookie", cookie_value);
+            if(cookie_value!=null) {
+                cookie_value = cookie_value.replaceAll("; path=/", "");
+                conn.setRequestProperty("cookie", cookie_value);
+            }
             // 发送POST请求必须设置如下两行
             conn.setDoOutput(true);
             conn.setDoInput(true);
@@ -183,45 +185,10 @@ public class JwxtUtil {
         return result;
     }
 
-    private String str="";
     private String Syllabus(String username,String password) {
-        JwxtUtil.sendGet("http://jwxt.imu.edu.cn/loginAction.do","zjh="+username+"&mm="+password);
+        JwxtUtil.sendPost("http://jwxt.imu.edu.cn/loginAction.do","zjh="+username+"&mm="+password);
         String string=JwxtUtil.sendGet("http://jwxt.imu.edu.cn/xkAction.do", "actionType=6");
-        boolean key=false;
-        for (int i = 0; i < string.length()-1; i++) {
-            if(">".equals(string.charAt(i)+"")){
-                key=true;
-            }
-            if("<".equals(string.charAt(i+1)+"")&&key==true){
-                str+=",";
-            }
-            if("<".equals(string.charAt(i+1)+"")){
-                key=false;
-            }
-            if(key==true&&((string.charAt(i+1)!=' '&&string.charAt(i+1)!='/')&&(string.charAt(i+1)!='&'||string.charAt(i+1)<='a'||string.charAt(i+1)>='z')&&(string.charAt(i+1)<='A'||string.charAt(i+1)>='Z'))){
-                str+=string.charAt(i+1);
-            }
-        }
-        String str1="星期一";
-        for(int i=1;i<str.length()-1;i++){
-            if(str.charAt(i-1)!=','&&str.charAt(i+1)!=','&&str.charAt(i)==','){
-                str1+="";
-            }else{
-                str1+=str.charAt(i);
-            }
-        }
-        String string2[]=str1.split(",");
-        String result="";
-        for (String string3 : string2) {
-            if(string3.contains("选课结果列表")){
-                break;
-            }
-            if(!string3.equals("")){
-                result+=string3+",";
-            }
-        }
-        result=result.replaceAll("\\s*", "");
-        return result;
+        return string;
 
     }
 
@@ -243,10 +210,10 @@ public class JwxtUtil {
      * @return
      */
     public StudentInfo getStudentInfo(String usernum,String password){
-        sendGet("http://jwxt.imu.edu.cn/loginAction.do","zjh="+usernum+"&mm="+password);
-        String string = sendPost("http://jwxt.imu.edu.cn/xjInfoAction.do","oper=xjxx");
+        JwxtUtil.sendPost("http://jwxt.imu.edu.cn/loginAction.do","zjh="+usernum+"&mm="+password);
+        String string = JwxtUtil.sendPost("http://jwxt.imu.edu.cn/xjInfoAction.do","oper=xjxx");
         Document doc = Jsoup.parse(string);
-        System.out.print(doc.body());
+        //System.out.print(doc.body());
 
         StudentInfo studentInfo=new StudentInfo();
         studentInfo.setNumber(usernum);
