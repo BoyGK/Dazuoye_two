@@ -31,7 +31,7 @@ public class STHomeAction extends ActionSupport {
         this.userid = userid;
     }
 
-    public String home(){
+    public String getHome(){
         try {
             HttpServletResponse response = ServletActionContext.getResponse();
             response.setContentType("text/html;charset=UTF-8");

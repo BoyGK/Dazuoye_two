@@ -226,7 +226,7 @@ public class JwxtUtil {
         return studentInfo;
     }
 
-    class StudentInfo{
+    public static class StudentInfo{
         private String number;
         private String password;
         private String truename;

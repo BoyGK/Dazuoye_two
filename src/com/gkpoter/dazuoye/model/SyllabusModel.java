@@ -8,14 +8,7 @@ import java.util.List;
 public class SyllabusModel {
     private Integer state;
     private String msg;
-    protected List<String> calssName;
-    public List<String> getCalssName() {
-        return calssName;
-    }
-
-    public void setCalssName(List<String> calssName) {
-        this.calssName = calssName;
-    }
+    private List<String> calssName;
 
     public Integer getState() {
         return state;
@@ -33,5 +26,11 @@ public class SyllabusModel {
         this.msg = msg;
     }
 
+    public List<String> getCalssName() {
+        return calssName;
+    }
 
+    public void setCalssName(List<String> calssName) {
+        this.calssName = calssName;
+    }
 }

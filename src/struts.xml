@@ -10,7 +10,9 @@
         <!-- 定义一个action -->
         <action name="login" class="com.gkpoter.dazuoye.action.LoginAction" method="Login">
         </action>
-        <action name="home" class="com.gkpoter.dazuoye.action.STHomeAction" method="home">
+        <action name="home" class="com.gkpoter.dazuoye.action.STHomeAction" method="getHome">
+        </action>
+        <action name="upload" class="com.gkpoter.dazuoye.action.UpLoadAction" method="upLoadFile">
         </action>
         <action name="chooseclass" class="com.gkpoter.dazuoye.action.ChooseClassAction" method="ChooseClass">
         </action>
