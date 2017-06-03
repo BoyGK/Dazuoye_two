@@ -10,6 +10,7 @@ public class VideoBean {
     private String subject;
     private Integer granter;
     private Integer watchNum;
+    private String update;
 
     public Integer getVideoid() {
         return videoid;
@@ -57,5 +58,13 @@ public class VideoBean {
 
     public void setWatchNum(Integer watchNum) {
         this.watchNum = watchNum;
+    }
+
+    public String getUpdate() {
+        return update;
+    }
+
+    public void setUpdate(String update) {
+        this.update = update;
     }
 }

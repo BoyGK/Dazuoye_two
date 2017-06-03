@@ -1,5 +1,7 @@
 package com.gkpoter.dazuoye.model;
 
+import com.gkpoter.dazuoye.bean.VideoBean;
+
 import java.util.List;
 
 /**
@@ -9,7 +11,7 @@ public class STHomeModel {
 
     private Integer state;
     private String msg;
-    private List<VideoModel> videos;
+    private List<VideoBean> videos;
 
     public Integer getState() {
         return state;
@@ -27,11 +29,11 @@ public class STHomeModel {
         this.msg = msg;
     }
 
-    public List<VideoModel> getVideos() {
+    public List<VideoBean> getVideos() {
         return videos;
     }
 
-    public void setVideos(List<VideoModel> videos) {
+    public void setVideos(List<VideoBean> videos) {
         this.videos = videos;
     }
 }

@@ -11,7 +11,8 @@ public class JdbcUtil {
     private static final String dbName = "dazuoye";
     private static final String passWord = "";
     private static final String userName = "root";
-    private static final String url = "jdbc:mysql://localhost:3306/" + dbName;
+    private static final String url = "jdbc:mysql://localhost:3306/"
+            + dbName + "?useUnicode=true&characterEncoding=UTF-8";
 
     private static JdbcUtil jdbcUtil = null;
 

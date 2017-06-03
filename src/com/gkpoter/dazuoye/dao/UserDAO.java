@@ -92,34 +92,36 @@ public class UserDAO {
         if(user!=null){
             if(user.getUsername()!=null){
                 if(!"".equals(user.getUsername())){
-                    List<STuserBean> sTuserBean = query("SELECT * FROM stuser WHERE username = " + user.getUsername() + "\"");
+                    List<STuserBean> sTuserBean = query("SELECT * FROM stuser WHERE username = '" + user.getUsername() + "'");
                     //更新操作
                     if(sTuserBean!=null&&sTuserBean.size()!=0){
                         String sql="UPDATE stuser SET " +
-                                "username=" + user.getUsername() + "," +
-                                "password=" + user.getPassword() + "," +
-                                "truename=" + user.getTruename() + "," +
-                                "sex=" + user.getSex() + "," +
-                                "school=" + user.getSchool() + "," +
-                                "dept=" + user.getDept() + "," +
-                                "col=" + user.getCollage() + "," +
-                                "kind=" + user.getKind() + " " +
-                                "course=" + user.getCourse() + " " +
-                                "WHERE username=" + user.getUsername();
+                                "userid=" + user.getUserid() + "," +
+                                "username=\"" + user.getUsername() + "\"," +
+                                "password=\"" + user.getPassword() + "\"," +
+                                "truename=\"" + user.getTruename() + "\"," +
+                                "sex=\"" + user.getSex() + "\"," +
+                                "school=\"" + user.getSchool() + "\"," +
+                                "dept=\"" + user.getDept() + "\"," +
+                                "col=\"" + user.getCollage() + "\"," +
+                                "kind=" + user.getKind() + "," +
+                                "course=\"" + user.getCourse() + "\" " +
+                                "WHERE username=\"" + user.getUsername() + "\"";
                         query(sql);
                     }
                     //插入操作
                     else{
-                        String sql="INSERT INTO stuser VALUES (" +
-                                user.getTruename() + "," +
-                                user.getUsername() + "," +
-                                user.getPassword() + "," +
-                                user.getSex() + "," +
-                                user.getDept() + "," +
-                                user.getCollage() + "," +
-                                user.getSchool() + "," +
+                        String sql="INSERT INTO stuser VALUES (\"" +
+                                user.getUserid() + "," +
+                                user.getTruename() + "\",\"" +
+                                user.getUsername() + "\",\"" +
+                                user.getPassword() + "\",\"" +
+                                user.getSex() + "\",\"" +
+                                user.getDept() + "\",\"" +
+                                user.getCollage() + "\",\"" +
+                                user.getSchool() + "\",\"" +
                                 user.getKind() + "," +
-                                user.getCourse() + ")";
+                                user.getCourse() + "\")";
                         query(sql);
                     }
                     return true;
@@ -137,11 +139,11 @@ public class UserDAO {
         if (user != null) {
             if (user.getUsername() != null) {
                 if (!"".equals(user.getUsername())) {
-                    List<STuserBean> sTuserBean = query("SELECT * FROM stuser WHERE username = " + user.getUsername() + "\"");
+                    List<STuserBean> sTuserBean = query("SELECT * FROM stuser WHERE username = '" + user.getUsername() + "\'");
                     if(sTuserBean==null||sTuserBean.size()==0){
                         return false;
                     }else {
-                        String sql = "DELETE FROM stuser WHERE username=" + user.getUsername();
+                        String sql = "DELETE FROM stuser WHERE username='" + user.getUsername() + "'";
                         query(sql);
                     }
                     return true;

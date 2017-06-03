@@ -10,5 +10,7 @@
         <!-- 定义一个action -->
         <action name="login" class="com.gkpoter.dazuoye.action.LoginAction" method="Login">
         </action>
+        <action name="home" class="com.gkpoter.dazuoye.action.STHomeAction" method="home">
+        </action>
     </package>
 </struts>

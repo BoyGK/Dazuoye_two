@@ -41,6 +41,7 @@ public class VideoDAO {
                     video.setSubject(rs.getString(4));
                     video.setGranter(rs.getInt(5));
                     video.setWatchNum(rs.getInt(6));
+                    video.setUpdate(rs.getString(7));
                     stUsers.add(video);
                 }
             }else{
@@ -69,28 +70,30 @@ public class VideoDAO {
         if(video!=null){
             if(video.getURL()!=null){
                 if(!"".equals(video.getURL())){
-                    List<VideoBean> videobean = query("SELECT * FROM video WHERE url = " + video.getURL() + "\"");
+                    List<VideoBean> videobean = query("SELECT * FROM video WHERE url = '" + video.getURL() + "'");
                     //更新操作
                     if(videobean!=null&&videobean.size()!=0){
                         String sql="UPDATE video SET " +
                                 "videoid=" + video.getVideoid()+ "," +
-                                "title=" + video.getTitle() + "," +
-                                "url=" + video.getURL() + "," +
-                                "subject=" + video.getSubject() + "," +
+                                "title=\"" + video.getTitle() + "\"," +
+                                "url=\"" + video.getURL() + "\"," +
+                                "subject=\"" + video.getSubject() + "\"," +
                                 "granter=" + video.getGranter() + "," +
                                 "watchnum=" + video.getWatchNum() + "," +
-                                "WHERE url=" + video.getURL();
+                                "updt=\"" + video.getUpdate() + "\" " +
+                                "WHERE url=\"" + video.getURL() + "\"";
                         query(sql);
                     }
                     //插入操作
                     else{
-                        String sql="INSERT INTO video VALUES (" +
-                                video.getVideoid() + "," +
-                                video.getURL() + "," +
-                                video.getTitle() + "," +
-                                video.getSubject()+ "," +
-                                video.getGranter()+ "," +
-                                video.getWatchNum()+ ")";
+                        String sql="INSERT INTO video VALUES (\"" +
+                                video.getVideoid() + "\",\"" +
+                                video.getURL() + "\",\"" +
+                                video.getTitle() + "\",\"" +
+                                video.getSubject()+ "\",\"" +
+                                video.getGranter()+ "\",\"" +
+                                video.getWatchNum()+ "\",\"" +
+                                video.getUpdate()+ "\")";
                         query(sql);
                     }
                     return true;
@@ -108,11 +111,11 @@ public class VideoDAO {
         if (video != null) {
             if (video.getURL() != null) {
                 if (!"".equals(video.getURL())) {
-                    List<VideoBean> videobean = query("SELECT * FROM video WHERE url = " + video.getURL() + "\"");
+                    List<VideoBean> videobean = query("SELECT * FROM video WHERE url = '" + video.getURL() + "'");
                     if(videobean==null||videobean.size()==0){
                         return false;
                     }else {
-                        String sql = "DELETE FROM video WHERE username=" + video.getURL();
+                        String sql = "DELETE FROM video WHERE username='" + video.getURL() + "'";
                         query(sql);
                     }
                     return true;

@@ -1,19 +1,18 @@
 package com.gkpoter.dazuoye.action;
 
-import com.gkpoter.dazuoye.model.LoginModel;
+import com.gkpoter.dazuoye.model.STHomeModel;
 import com.gkpoter.dazuoye.serves.UserServes;
 import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.ServletActionContext;
 
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * Created by 12153 on 2017/5/26.
+ * Created by 12153 on 2017/6/3.
  */
-public class LoginAction extends ActionSupport {
+public class STHomeAction extends ActionSupport {
 
     /**
      * HttpServletResponse response = ServletActionContext.getResponse();
@@ -22,38 +21,28 @@ public class LoginAction extends ActionSupport {
      * out.println("");
      */
 
-    private String username;
-    private String password;
+    private Integer userid;
 
-    public String getUsername() {
-        return username;
+    public Integer getUserid() {
+        return userid;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserid(Integer userid) {
+        this.userid = userid;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String Login() {
+    public String home(){
         try {
             HttpServletResponse response = ServletActionContext.getResponse();
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
-            UserServes serves=new UserServes();
-            LoginModel model = serves.login(username,password);
+            UserServes serves = new UserServes();
+            STHomeModel model = serves.getHome(userid);
             String json = new Gson().toJson(model);
             out.println(json);
-        } catch (IOException e) {
+        }catch (Exception e){
             e.printStackTrace();
         }
-
         return null;
     }
 }
