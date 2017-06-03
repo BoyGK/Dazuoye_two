@@ -9,6 +9,15 @@ public class VideoBean {
     private String URL;
     private String subject;
     private Integer granter;
+    private Integer watchNum;
+
+    public Integer getWatchNum() {
+        return watchNum;
+    }
+
+    public void setWatchNum(Integer watchNum) {
+        this.watchNum = watchNum;
+    }
 
     public Integer getVideoid() {
         return videoid;

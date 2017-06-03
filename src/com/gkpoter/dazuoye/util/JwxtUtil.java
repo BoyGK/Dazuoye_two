@@ -186,7 +186,7 @@ public class JwxtUtil {
     }
 
     private String Syllabus(String username,String password) {
-        JwxtUtil.sendPost("http://jwxt.imu.edu.cn/loginAction.do","zjh="+username+"&mm="+password);
+        JwxtUtil.sendGet("http://jwxt.imu.edu.cn/loginAction.do","zjh="+username+"&mm="+password);
         String string=JwxtUtil.sendGet("http://jwxt.imu.edu.cn/xkAction.do", "actionType=6");
         return string;
 
@@ -198,8 +198,12 @@ public class JwxtUtil {
      * @param password
      * @return
      */
-    public String[] getSyllabus(String usernum,String password){
-        String[] string=Syllabus(usernum, password).split(",");
+    public String getSyllabus(String usernum,String password){
+        String string=Syllabus(usernum, password);
+        Document doc = Jsoup.parse(string);
+        /*
+        doc网页分析
+         */
         return string;
     }
 
@@ -210,11 +214,12 @@ public class JwxtUtil {
      * @return
      */
     public StudentInfo getStudentInfo(String usernum,String password){
-        JwxtUtil.sendPost("http://jwxt.imu.edu.cn/loginAction.do","zjh="+usernum+"&mm="+password);
+        JwxtUtil.sendGet("http://jwxt.imu.edu.cn/loginAction.do","zjh="+usernum+"&mm="+password);
         String string = JwxtUtil.sendPost("http://jwxt.imu.edu.cn/xjInfoAction.do","oper=xjxx");
         Document doc = Jsoup.parse(string);
-        //System.out.print(doc.body());
-
+        /*
+        doc网页分析
+         */
         StudentInfo studentInfo=new StudentInfo();
         studentInfo.setNumber(usernum);
         studentInfo.setPassword(password);

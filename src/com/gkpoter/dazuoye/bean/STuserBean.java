@@ -9,11 +9,24 @@ public class STuserBean {
     private String username;
     private String password;
     private String truename;
-    private Integer sex;
+    private String sex;
     private String school;
     private String dept;
     private String collage;
     private Integer kind;
+    private String course;
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getCourse() {
+        return course;
+    }
+
+    public void setCourse(String course) {
+        this.course = course;
+    }
 
     public Integer getUserid() {
         return userid;
@@ -45,14 +58,6 @@ public class STuserBean {
 
     public void setTruename(String truename) {
         this.truename = truename;
-    }
-
-    public Integer getSex() {
-        return sex;
-    }
-
-    public void setSex(Integer sex) {
-        this.sex = sex;
     }
 
     public String getSchool() {
