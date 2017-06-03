@@ -14,15 +14,14 @@ import java.io.PrintWriter;
  * Created by lenovo on 2017/6/3.
  */
 public class ChooseClassServes {
-    public STHomeModel chooseClass(String cnum, String cno){
-        STHomeModel model=new STHomeModel();
-        if(cnum.equals("123")&&cno.equals("123")) {
+    public STHomeModel chooseClass(String cnum, String cno) {
+        STHomeModel model = new STHomeModel();
+        if (cnum.equals("123") && cno.equals("123")) {
             model.setState(1);
             model.setMsg("选课成功！");
-        }
-        else{
-                model.setState(0);
-                model.setMsg("选课失败！");
+        } else {
+            model.setState(0);
+            model.setMsg("选课失败！");
         }
         return model;
     }

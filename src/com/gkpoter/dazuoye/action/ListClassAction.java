@@ -10,6 +10,7 @@ import org.apache.struts2.ServletActionContext;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
+
 /**
  * Created by lenovo on 2017/6/3.
  */
@@ -25,7 +26,7 @@ public class ListClassAction {
         this.userid = userid;
     }
 
-    public String ListClass(){
+    public String ListClass() {
         try {
             HttpServletResponse response = ServletActionContext.getResponse();
             response.setContentType("text/html;charset=UTF-8");
@@ -34,7 +35,7 @@ public class ListClassAction {
             SyllabusModel model = serves.listClass(userid);
             String json = new Gson().toJson(model);
             out.println(json);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return null;

@@ -36,18 +36,18 @@ public class ChooseClassAction {
         this.cno = cno;
     }
 
-    public String ChooseClass(){
-        try{
+    public String ChooseClass() {
+        try {
             HttpServletResponse response = ServletActionContext.getResponse();
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
-            ChooseClassServes serves=new ChooseClassServes();
-            STHomeModel model=serves.chooseClass(cnum,cno);
+            ChooseClassServes serves = new ChooseClassServes();
+            STHomeModel model = serves.chooseClass(cnum, cno);
             String json = new Gson().toJson(model);
             out.println(json);
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
-       return null;
+        return null;
     }
 }
