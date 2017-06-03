@@ -16,18 +16,6 @@ public class STuserBean {
     private Integer kind;
     private String course;
 
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-
-    public String getCourse() {
-        return course;
-    }
-
-    public void setCourse(String course) {
-        this.course = course;
-    }
-
     public Integer getUserid() {
         return userid;
     }
@@ -60,6 +48,14 @@ public class STuserBean {
         this.truename = truename;
     }
 
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
     public String getSchool() {
         return school;
     }
@@ -90,5 +86,13 @@ public class STuserBean {
 
     public void setKind(Integer kind) {
         this.kind = kind;
+    }
+
+    public String getCourse() {
+        return course;
+    }
+
+    public void setCourse(String course) {
+        this.course = course;
     }
 }

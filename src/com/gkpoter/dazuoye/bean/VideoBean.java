@@ -11,27 +11,19 @@ public class VideoBean {
     private Integer granter;
     private Integer watchNum;
 
-    public Integer getWatchNum() {
-        return watchNum;
-    }
-
-    public void setWatchNum(Integer watchNum) {
-        this.watchNum = watchNum;
-    }
-
     public Integer getVideoid() {
         return videoid;
     }
 
     public void setVideoid(Integer videoid) {
-        this.videoid= videoid;
+        this.videoid = videoid;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String Title) {
+    public void setTitle(String title) {
         this.title = title;
     }
 
@@ -40,14 +32,14 @@ public class VideoBean {
     }
 
     public void setURL(String URL) {
-        this.URL= URL;
+        this.URL = URL;
     }
 
     public String getSubject() {
         return subject;
     }
 
-    public void setSubject(String Subject) {
+    public void setSubject(String subject) {
         this.subject = subject;
     }
 
@@ -55,7 +47,15 @@ public class VideoBean {
         return granter;
     }
 
-    public void setGranter(Integer Granter) {
+    public void setGranter(Integer granter) {
         this.granter = granter;
+    }
+
+    public Integer getWatchNum() {
+        return watchNum;
+    }
+
+    public void setWatchNum(Integer watchNum) {
+        this.watchNum = watchNum;
     }
 }

@@ -36,10 +36,11 @@ public class VideoDAO {
                 while (rs!=null&&rs.next()) {
                     VideoBean video = new VideoBean();
                     video.setVideoid(rs.getInt(1));
-                    video.setTitle(rs.getString(2));
-                    video.setURL(rs.getString(3));
+                    video.setURL(rs.getString(2));
+                    video.setTitle(rs.getString(3));
                     video.setSubject(rs.getString(4));
                     video.setGranter(rs.getInt(5));
+                    video.setWatchNum(rs.getInt(6));
                     stUsers.add(video);
                 }
             }else{
@@ -57,7 +58,7 @@ public class VideoDAO {
      * @return
      */
     public List<VideoBean> find(){
-        return query("select * from stuser");
+        return query("select * from video");
     }
 
     /**
@@ -77,6 +78,7 @@ public class VideoDAO {
                                 "url=" + video.getURL() + "," +
                                 "subject=" + video.getSubject() + "," +
                                 "granter=" + video.getGranter() + "," +
+                                "watchnum=" + video.getWatchNum() + "," +
                                 "WHERE url=" + video.getURL();
                         query(sql);
                     }
@@ -84,10 +86,11 @@ public class VideoDAO {
                     else{
                         String sql="INSERT INTO video VALUES (" +
                                 video.getVideoid() + "," +
-                                video.getTitle() + "," +
                                 video.getURL() + "," +
+                                video.getTitle() + "," +
                                 video.getSubject()+ "," +
-                                video.getGranter()+ ")";
+                                video.getGranter()+ "," +
+                                video.getWatchNum()+ ")";
                         query(sql);
                     }
                     return true;

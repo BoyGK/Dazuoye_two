@@ -36,14 +36,15 @@ public class UserDAO {
                 while (rs!=null&&rs.next()) {
                     STuserBean stuser = new STuserBean();
                     stuser.setUserid(rs.getInt(1));
-                    stuser.setUsername(rs.getString(2));
-                    stuser.setPassword(rs.getString(3));
-                    stuser.setTruename(rs.getString(4));
-                    stuser.setSex(rs.getInt(5));
-                    stuser.setSchool(rs.getString(6));
-                    stuser.setDept(rs.getString(7));
-                    stuser.setCollage(rs.getString(8));
+                    stuser.setTruename(rs.getString(2));
+                    stuser.setUsername(rs.getString(3));
+                    stuser.setPassword(rs.getString(4));
+                    stuser.setSex(rs.getString(5));
+                    stuser.setDept(rs.getString(6));
+                    stuser.setCollage(rs.getString(7));
+                    stuser.setSchool(rs.getString(8));
                     stuser.setKind(rs.getInt(9));
+                    stuser.setCourse(rs.getString(10));
                     stUsers.add(stuser);
                 }
             }else{
@@ -101,22 +102,24 @@ public class UserDAO {
                                 "sex=" + user.getSex() + "," +
                                 "school=" + user.getSchool() + "," +
                                 "dept=" + user.getDept() + "," +
-                                "collage=" + user.getCollage() + "," +
+                                "col=" + user.getCollage() + "," +
                                 "kind=" + user.getKind() + " " +
+                                "course=" + user.getCourse() + " " +
                                 "WHERE username=" + user.getUsername();
                         query(sql);
                     }
                     //插入操作
                     else{
                         String sql="INSERT INTO stuser VALUES (" +
+                                user.getTruename() + "," +
                                 user.getUsername() + "," +
                                 user.getPassword() + "," +
-                                user.getTruename() + "," +
                                 user.getSex() + "," +
-                                user.getSchool() + "," +
                                 user.getDept() + "," +
                                 user.getCollage() + "," +
-                                user.getKind() + ")";
+                                user.getSchool() + "," +
+                                user.getKind() + "," +
+                                user.getCourse() + ")";
                         query(sql);
                     }
                     return true;

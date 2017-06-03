@@ -1,6 +1,8 @@
 package com.gkpoter.dazuoye.action;
 
+import com.gkpoter.dazuoye.bean.STuserBean;
 import com.gkpoter.dazuoye.model.BaseModel;
+import com.gkpoter.dazuoye.model.LoginModel;
 import com.gkpoter.dazuoye.serves.UserServes;
 import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionSupport;
@@ -46,12 +48,17 @@ public class LoginAction extends ActionSupport {
             HttpServletResponse response = ServletActionContext.getResponse();
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
-            BaseModel model=new BaseModel(0,"");
+            LoginModel model=new LoginModel();
             UserServes serves=new UserServes();
-            if(serves.login(username,password)){
+            STuserBean stu = serves.login(username,password);
+            if(stu!=null){
                 model.setState(1);
+                model.setMsg("");
+                model.setUser(stu);
             }else{
+                model.setState(0);
                 model.setMsg("用户名或密码错误");
+                model.setUser(new STuserBean());
             }
             String json = new Gson().toJson(model);
             out.println(json);

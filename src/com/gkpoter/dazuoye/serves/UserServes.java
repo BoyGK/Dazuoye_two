@@ -8,20 +8,15 @@ import com.gkpoter.dazuoye.dao.UserDAO;
  */
 public class UserServes {
 
-    public boolean login(String username,String password){
+    public STuserBean login(String username,String password){
         STuserBean sTuserBean = new STuserBean();
         sTuserBean.setUsername(username);
         sTuserBean.setPassword(password);
         UserDAO dao=new UserDAO();
         STuserBean stu = dao.find(sTuserBean);
         if(stu!=null&&password.equals(stu.getPassword())){
-            return true;
+            return stu;
         }
-        return false;
-    }
-
-    public boolean register(String username,String password,String stnumber,String stpassword){
-
-        return false;
+        return null;
     }
 }
