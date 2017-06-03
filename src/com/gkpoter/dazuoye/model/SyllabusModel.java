@@ -1,12 +1,21 @@
 package com.gkpoter.dazuoye.model;
 
+import java.util.List;
+
 /**
  * Created by 12153 on 2017/6/3.
  */
 public class SyllabusModel {
     private Integer state;
     private String msg;
-    private String calssName;
+    protected List<String> calssName;
+    public List<String> getCalssName() {
+        return calssName;
+    }
+
+    public void setCalssName(List<String> calssName) {
+        this.calssName = calssName;
+    }
 
     public Integer getState() {
         return state;
@@ -24,11 +33,5 @@ public class SyllabusModel {
         this.msg = msg;
     }
 
-    public String getCalssName() {
-        return calssName;
-    }
 
-    public void setCalssName(String calssName) {
-        this.calssName = calssName;
-    }
 }

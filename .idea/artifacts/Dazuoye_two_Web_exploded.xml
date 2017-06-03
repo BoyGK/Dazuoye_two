@@ -11,6 +11,7 @@
           <element id="library" level="project" name="struts2" />
           <element id="file-copy" path="$PROJECT_DIR$/../../MySQL/mysql-connector-java-5.1.42/mysql-connector-java-5.1.42-bin.jar" />
           <element id="file-copy" path="$APPLICATION_HOME_DIR$/gson.jar" />
+          <element id="file-copy" path="$APPLICATION_HOME_DIR$/jsoup-1.10.2.jar" />
         </element>
       </element>
     </root>

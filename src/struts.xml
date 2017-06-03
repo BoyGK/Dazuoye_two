@@ -12,5 +12,9 @@
         </action>
         <action name="home" class="com.gkpoter.dazuoye.action.STHomeAction" method="home">
         </action>
+        <action name="chooseclass" class="com.gkpoter.dazuoye.action.ChooseClassAction" method="ChooseClass">
+        </action>
+        <action name="listclass" class="com.gkpoter.dazuoye.action.ListClassAction" method="ListClass">
+        </action>
     </package>
 </struts>
