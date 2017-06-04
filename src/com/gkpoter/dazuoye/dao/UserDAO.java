@@ -111,7 +111,7 @@ public class UserDAO {
                     }
                     //插入操作
                     else{
-                        String sql="INSERT INTO stuser VALUES (\"" +
+                        String sql="INSERT INTO stuser VALUES (" +
                                 user.getUserid() + "," +
                                 user.getTruename() + "\",\"" +
                                 user.getUsername() + "\",\"" +
@@ -119,8 +119,8 @@ public class UserDAO {
                                 user.getSex() + "\",\"" +
                                 user.getDept() + "\",\"" +
                                 user.getCollage() + "\",\"" +
-                                user.getSchool() + "\",\"" +
-                                user.getKind() + "," +
+                                user.getSchool() + "\"," +
+                                user.getKind() + ",\"" +
                                 user.getCourse() + "\")";
                         query(sql);
                     }

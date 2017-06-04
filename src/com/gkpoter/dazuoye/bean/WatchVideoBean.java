@@ -10,7 +10,7 @@ public class WatchVideoBean {
     private Integer watchVideoid;
     private Integer userid;
     private Integer videoid;
-    private Date time;
+    private String time;
 
     public Integer getWatchVideoid() {
         return watchVideoid;
@@ -36,11 +36,11 @@ public class WatchVideoBean {
         this.videoid = videoid;
     }
 
-    public Date getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
     }
 }

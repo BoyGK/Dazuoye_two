@@ -2,6 +2,7 @@ package com.gkpoter.dazuoye.action;
 
 import com.gkpoter.dazuoye.bean.STuserBean;
 import com.gkpoter.dazuoye.bean.VideoBean;
+import com.gkpoter.dazuoye.model.BaseModel;
 import com.gkpoter.dazuoye.model.LoginModel;
 import com.gkpoter.dazuoye.model.STHomeModel;
 import com.gkpoter.dazuoye.serves.ChooseClassServes;
@@ -42,7 +43,7 @@ public class ChooseClassAction {
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
             ChooseClassServes serves = new ChooseClassServes();
-            STHomeModel model = serves.chooseClass(cnum, cno);
+            BaseModel model = serves.chooseClass(cnum, cno);
             String json = new Gson().toJson(model);
             out.println(json);
         } catch (IOException e) {

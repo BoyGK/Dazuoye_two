@@ -18,5 +18,7 @@
         </action>
         <action name="listclass" class="com.gkpoter.dazuoye.action.ListClassAction" method="ListClass">
         </action>
+        <action name="videolog" class="com.gkpoter.dazuoye.action.VideoLogAction" method="videoLog">
+        </action>
     </package>
 </struts>
