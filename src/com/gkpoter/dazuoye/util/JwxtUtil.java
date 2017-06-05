@@ -2,10 +2,12 @@ package com.gkpoter.dazuoye.util;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -195,11 +197,15 @@ public class JwxtUtil {
      * @return
      */
     public String getSyllabus(String usernum, String password) {
-        String string = Syllabus(usernum, password);
-        Document doc = Jsoup.parse(string);
-        /*
-        doc网页分析
-         */
+        String html = Syllabus(usernum, password);
+        Document document=Jsoup.parse(html);
+        Elements element = document.getElementsByTag("td");
+        String string = element.get(18).text();
+        string = string.replaceAll(" ",",");
+        string = string.replaceAll(" ,","");
+        string = string.replaceAll("星期一,星期二,星期三,星期四,星期五,星期六,星期日,上午,","");
+        string = string.replaceAll("午,休,下午,","");
+        string = string.replaceAll(",晚饭,晚上,第9节\\(1900-1950\\),第10节\\(2000-2050\\),第11节\\(2100-2150\\),","");
         return string;
     }
 
@@ -213,13 +219,32 @@ public class JwxtUtil {
     public StudentInfo getStudentInfo(String usernum, String password) {
         JwxtUtil.sendGet("http://jwxt.imu.edu.cn/loginAction.do", "zjh=" + usernum + "&mm=" + password);
         String string = JwxtUtil.sendPost("http://jwxt.imu.edu.cn/xjInfoAction.do", "oper=xjxx");
-        Document doc = Jsoup.parse(string);
+        Map<String,String> map=new HashMap<>();
+        Document document = Jsoup.parse(string);
+        Elements element = document.getElementsByTag("td");
+        String content = element.get(15).text();
+        content = content.replaceAll(" ",",");
+        content = content.replaceAll(" ","");
+        String str[] = content.split(",");
+        for(int i=0;i<str.length-1;i++){
+            if(str[i].contains(":")&&!str[i+1].contains(":")){
+                map.put(str[i],str[i+1]);
+                i++;
+            }
+        }
         /*
         doc网页分析
          */
         StudentInfo studentInfo = new StudentInfo();
         studentInfo.setNumber(usernum);
         studentInfo.setPassword(password);
+        studentInfo.setTruename(map.get("姓名:"));
+        studentInfo.setCardnum(map.get("身份证号:"));
+        studentInfo.setClazz(map.get("班级:"));
+        studentInfo.setFaculty(map.get("系所:"));
+        studentInfo.setNation(map.get("民族:"));
+        studentInfo.setPoliticalstatus(map.get("政治面貌:"));
+        studentInfo.setSex(map.get("性别:"));
         return studentInfo;
     }
 

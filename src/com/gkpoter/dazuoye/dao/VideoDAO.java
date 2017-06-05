@@ -86,12 +86,12 @@ public class VideoDAO {
                     }
                     //插入操作
                     else{
-                        String sql="INSERT INTO video VALUES (\"" +
-                                video.getVideoid() + "\",\"" +
+                        String sql="INSERT INTO video VALUES (" +
+                                video.getVideoid() + ",\"" +
                                 video.getURL() + "\",\"" +
                                 video.getTitle() + "\",\"" +
-                                video.getSubject()+ "\",\"" +
-                                video.getGranter()+ "\",\"" +
+                                video.getSubject()+ "\"," +
+                                video.getGranter()+ ",\"" +
                                 video.getWatchNum()+ "\",\"" +
                                 video.getUpdate()+ "\")";
                         query(sql);

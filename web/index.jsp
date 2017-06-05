@@ -11,8 +11,11 @@
     <title>$Title$</title>
   </head>
   <body>
-  <form action="/index" method="post">
-    <input type="text" name="user" />
+  <form action="/upload" method="post">
+    <input type="text" name="userid" />
+    <input type="file" name="videoFile" />
+    <input type="text" name="title" />
+    <input type="text" name="subject" />
     <input type="submit">
   </form>
   </body>
