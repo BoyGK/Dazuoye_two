@@ -35,35 +35,44 @@ public class UserServes {
             model.setMsg("");
             model.setUser(stu);
         } else {
-            JwxtUtil jwxtUtil = JwxtUtil.getInstance();
-            JwxtUtil.StudentInfo studentInfo = jwxtUtil.getStudentInfo(username, password);
-            if (studentInfo != null) {
-                List<STuserBean> stus = dao.find();
-                int id;
-                if (stus != null && stus.size() != 0) {
-                    id = stus.get(stus.size() - 1).getUserid() + 1;
+            try {
+                JwxtUtil jwxtUtil = new JwxtUtil();
+                JwxtUtil.StudentInfo studentInfo = jwxtUtil.getStudentInfo(username, password);
+                if (studentInfo != null) {
+                    List<STuserBean> stus = dao.find();
+                    int id;
+                    if (stus != null && stus.size() != 0) {
+                        id = stus.get(stus.size() - 1).getUserid() + 1;
+                    } else {
+                        id = 1;
+                    }
+                    sTuserBean.setUserid(id);
+                    sTuserBean.setUsername(studentInfo.getNumber());
+                    sTuserBean.setPassword(studentInfo.getPassword());
+                    sTuserBean.setTruename(studentInfo.getTruename());
+                    sTuserBean.setKind(1);
+                    sTuserBean.setSex(studentInfo.getSex());
+                    sTuserBean.setSchool("内蒙古大学");
+                    sTuserBean.setCollage(studentInfo.getFaculty());
+                    sTuserBean.setDept(studentInfo.getClazz());
+                    sTuserBean.setCourse(jwxtUtil.getSyllabus(username, password));
+                    dao.save(sTuserBean);
+                    model.setState(1);
+                    model.setMsg("");
+                    model.setUser(sTuserBean);
                 } else {
-                    id = 1;
+                    model.setState(0);
+                    model.setMsg("用户名或密码错误");
+                    model.setUser(new STuserBean());
                 }
-                sTuserBean.setUserid(id);
-                sTuserBean.setUsername(studentInfo.getNumber());
-                sTuserBean.setPassword(studentInfo.getPassword());
-                sTuserBean.setTruename(studentInfo.getTruename());
-                sTuserBean.setKind(1);
-                sTuserBean.setSex(studentInfo.getSex());
-                sTuserBean.setSchool("内蒙古大学");
-                sTuserBean.setCollage(studentInfo.getFaculty());
-                sTuserBean.setDept(studentInfo.getClazz());
-                sTuserBean.setCourse(jwxtUtil.getSyllabus(username, password));
-                dao.save(sTuserBean);
-                model.setState(1);
-                model.setMsg("");
-                model.setUser(sTuserBean);
-            } else {
+            }catch (Exception e){
                 model.setState(0);
                 model.setMsg("用户名或密码错误");
                 model.setUser(new STuserBean());
             }
+//            model.setState(0);
+//            model.setMsg("用户名或密码错误");
+//            model.setUser(new STuserBean());
         }
         return model;
     }

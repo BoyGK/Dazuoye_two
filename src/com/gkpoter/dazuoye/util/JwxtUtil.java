@@ -16,25 +16,11 @@ import java.util.Map;
  */
 public class JwxtUtil {
 
-    private JwxtUtil() {
+    public JwxtUtil() {
     }
 
-    private static JwxtUtil jwxtUtil = null;
-
-    public static JwxtUtil getInstance() {
-        if (jwxtUtil == null) {
-            // 给类加锁 防止线程并发
-            synchronized (JdbcUtil.class) {
-                if (jwxtUtil == null) {
-                    jwxtUtil = new JwxtUtil();
-                }
-            }
-        }
-        return jwxtUtil;
-    }
-
-    private static String cookie_key = null;
-    private static String cookie_value = null;
+    private String cookie_key = null;
+    private String cookie_value = null;
 
     /**
      * 向指定URL发送GET方法的请求
@@ -43,7 +29,7 @@ public class JwxtUtil {
      * @param param 请求参数，请求参数应该是 name1=value1&name2=value2 的形式。
      * @return URL 所代表远程资源的响应结果
      */
-    private static String sendGet(String url, String param) {
+    private String sendGet(String url, String param) {
         String result = "";
         BufferedReader in = null;
         try {
@@ -97,20 +83,20 @@ public class JwxtUtil {
         return result;
     }
 
-    public static String getCookie_key() {
+    public String getCookie_key() {
         return cookie_key;
     }
 
-    public static void setCookie_key(String cookie_key) {
-        JwxtUtil.cookie_key = cookie_key;
+    public void setCookie_key(String cookie_key) {
+        cookie_key = cookie_key;
     }
 
-    public static String getCookie_value() {
+    public String getCookie_value() {
         return cookie_value;
     }
 
-    public static void setCookie_value(String cookie_value) {
-        JwxtUtil.cookie_value = cookie_value;
+    public void setCookie_value(String cookie_value) {
+        cookie_value = cookie_value;
     }
 
     /**
@@ -120,7 +106,7 @@ public class JwxtUtil {
      * @param param 请求参数，请求参数应该是 name1=value1&name2=value2 的形式。
      * @return 所代表远程资源的响应结果
      */
-    private static String sendPost(String url, String param) {
+    private String sendPost(String url, String param) {
         PrintWriter out = null;
         BufferedReader in = null;
         String result = "";
@@ -173,8 +159,8 @@ public class JwxtUtil {
     }
 
     private String Syllabus(String username, String password) {
-        JwxtUtil.sendGet("http://jwxt.imu.edu.cn/loginAction.do", "zjh=" + username + "&mm=" + password);
-        String string = JwxtUtil.sendGet("http://jwxt.imu.edu.cn/xkAction.do", "actionType=6");
+        sendGet("http://jwxt.imu.edu.cn/loginAction.do", "zjh=" + username + "&mm=" + password);
+        String string = sendGet("http://jwxt.imu.edu.cn/xkAction.do", "actionType=6");
         return string;
 
     }
@@ -217,8 +203,8 @@ public class JwxtUtil {
      * @return
      */
     public StudentInfo getStudentInfo(String usernum, String password) {
-        JwxtUtil.sendGet("http://jwxt.imu.edu.cn/loginAction.do", "zjh=" + usernum + "&mm=" + password);
-        String string = JwxtUtil.sendPost("http://jwxt.imu.edu.cn/xjInfoAction.do", "oper=xjxx");
+        sendGet("http://jwxt.imu.edu.cn/loginAction.do", "zjh=" + usernum + "&mm=" + password);
+        String string = sendPost("http://jwxt.imu.edu.cn/xjInfoAction.do", "oper=xjxx");
         Map<String,String> map=new HashMap<>();
         Document document = Jsoup.parse(string);
         Elements element = document.getElementsByTag("td");
@@ -248,7 +234,7 @@ public class JwxtUtil {
         return studentInfo;
     }
 
-    public static class StudentInfo {
+    public class StudentInfo {
         private String number;
         private String password;
         private String truename;

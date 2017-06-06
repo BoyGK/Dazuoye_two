@@ -112,7 +112,7 @@ public class UserDAO {
                     //插入操作
                     else{
                         String sql="INSERT INTO stuser VALUES (" +
-                                user.getUserid() + "," +
+                                user.getUserid() + ",\"" +
                                 user.getTruename() + "\",\"" +
                                 user.getUsername() + "\",\"" +
                                 user.getPassword() + "\",\"" +
