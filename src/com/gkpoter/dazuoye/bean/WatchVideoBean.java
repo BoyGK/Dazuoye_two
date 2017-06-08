@@ -1,6 +1,5 @@
 package com.gkpoter.dazuoye.bean;
 
-import java.util.Date;
 
 /**
  * Created by 12153 on 2017/6/3.

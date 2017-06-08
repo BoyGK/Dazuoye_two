@@ -20,5 +20,7 @@
         </action>
         <action name="videolog" class="com.gkpoter.dazuoye.action.VideoLogAction" method="videoLog">
         </action>
+        <action name="getwvideo" class="com.gkpoter.dazuoye.action.GetWatchVideoAction" method="getWVideo">
+        </action>
     </package>
 </struts>
